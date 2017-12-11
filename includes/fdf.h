@@ -6,7 +6,7 @@
 /*   By: bsiguret <bsiguret@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/08 16:46:38 by bsiguret          #+#    #+#             */
-/*   Updated: 2017/12/09 17:26:18 by bsiguret         ###   ########.fr       */
+/*   Updated: 2017/12/11 01:44:07 by bsiguret         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ typedef struct		s_fdf
 	t_point					point;
 }									t_fdf;
 
-int								nb_line(char *map);
+int								nb_lines(char *map);
 
 /* ERROR FUNCTION */
 void							arg_error(void);

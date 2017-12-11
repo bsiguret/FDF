@@ -6,7 +6,7 @@
 #    By: bsiguret <bsiguret@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/11/06 20:22:27 by bsiguret          #+#    #+#              #
-#    Updated: 2017/12/09 17:34:30 by bsiguret         ###   ########.fr        #
+#    Updated: 2017/12/11 02:04:48 by bsiguret         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,7 +16,7 @@ INC_PATH = includes
 
 CPPFLAGS = -I includes
 CFLAGS = -Wall -Werror -Wextra
-MLXFLAGS = -lmlx -framework OpenGL -framework Appkit
+MLXFLAGS = -l mlx -framework OpenGL -framework Appkit
 SRC_PATH = src
 SRC_NAME = error.c main.c parser.c
 SRC = $(addprefix $(SRC_PATH)/,$(SRC_NAME))

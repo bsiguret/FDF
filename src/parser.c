@@ -6,56 +6,45 @@
 /*   By: bsiguret <bsiguret@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/08 17:05:56 by bsiguret          #+#    #+#             */
-/*   Updated: 2017/12/09 18:14:52 by bsiguret         ###   ########.fr       */
+/*   Updated: 2017/12/11 01:44:54 by bsiguret         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
 
-int		is_mapvalid(char *map)
-{
-	int fd;
 
-	fd = open(map, O_RDONLY);
-	while(get_next_line(fd, &map) == 1)
-	{
-		if()
-	}
-	return (1);
-}
-
-int		nb_ligne(char *map)
+int		nb_lines(char *map)
 {
 	int		fd;
 	int		nblines;
 	char	buf;
 
-	nbline = 0;
+	nblines = 0;
 	if((fd = open(map, O_RDONLY)) < 0)
 		map_error();
 	while(read(fd, &buf, 1))
 	{
 		if(buf == '\n')
 			nblines++;
+		if((buf != ' ' && buf != '-') || (buf < '0' && buf > '9'))
+			map_error();
 		buf++;
 	}
 	close(fd);
-	return(nbline);
+	return(nblines);
 }
 
-int		is_linevalid(char *map)
+/*int		get_point(char *str)
 {
-	int space;
-	int	nb_numb;
+	int	nb;
+	int	neg;
 
-	space = 0;
-	while(*map)
+	if (*str == '-')
+		*str++, neg = 1;
+	nb = 0;
+	while (*str >= '0'&& *str <= '9')
 	{
-		while(*map++ == ' ')
-			space++;
-		if(*map != '-' || (map < '0' || map > '9')
-			map_error();
-	}
 
-	return(1);
-}
+
+
+}*/

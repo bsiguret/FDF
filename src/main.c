@@ -6,7 +6,7 @@
 /*   By: bsiguret <bsiguret@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/08 15:16:02 by bsiguret          #+#    #+#             */
-/*   Updated: 2017/12/09 17:46:45 by bsiguret         ###   ########.fr       */
+/*   Updated: 2017/12/11 01:44:23 by bsiguret         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,6 @@ int		main(int ac, char **av)
 {
 	if(ac != 2)
 			arg_error();
-	printf("Nombre de lignes: %d\n", nb_line(av[1]));
+	printf("Nombre de lignes: %d\n", nb_lines(av[1]));
 	return (0);
 }
