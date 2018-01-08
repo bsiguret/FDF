@@ -6,7 +6,7 @@
 /*   By: bsiguret <bsiguret@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/26 04:30:38 by bsiguret          #+#    #+#             */
-/*   Updated: 2017/12/26 05:09:24 by bsiguret         ###   ########.fr       */
+/*   Updated: 2018/01/04 21:32:39 by bsiguret         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ static int		check_positions(int x, int y)
 		return (0);
 }
 
-static void		draw_line(t_param *s, unsigned long c, t_newpos d1, t_newpos d2)
+static void		draw_line(t_param *d, unsigned long c, t_newpos d1, t_newpos d2)
 {
 	t_draw		tmp;
 
@@ -41,7 +41,7 @@ static void		draw_line(t_param *s, unsigned long c, t_newpos d1, t_newpos d2)
 	while (1)
 	{
 		if (!check_positions(d1.new_pos_x, d1.new_pos_y))
-			put_pixel(s, c, d1.new_pos_x, d1.new_pos_y);
+			put_pixel(d, c, d1.new_pos_x, d1.new_pos_y);
 		if (d1.new_pos_x == d2.new_pos_x &&
 				d1.new_pos_y == d2.new_pos_y)
 			break ;
@@ -59,28 +59,28 @@ static void		draw_line(t_param *s, unsigned long c, t_newpos d1, t_newpos d2)
 	}
 }
 
-void			print_map(t_param *s, unsigned long **color, t_newpos **data)
+void			print_map(t_param *d, unsigned long **color, t_newpos **data)
 {
 	int			x;
 	int			y;
 
 	x = 0;
 	y = 0;
-	while (x < s->endl - 1)
+	while (x < d->endl - 1)
 	{
 		y = 0;
-		while (y < s->len - 1)
+		while (y < d->len - 1)
 		{
 			if (data[x][y].rz <= data[x + 1][y].rz)
-				draw_line(s, color[x + 1][y], data[x][y], data[x + 1][y]);
+				draw_line(d, color[x + 1][y], data[x][y], data[x + 1][y]);
 			else
-				draw_line(s, color[x][y], data[x][y], data[x + 1][y]);
-			if (y < s->len - 2)
+				draw_line(d, color[x][y], data[x][y], data[x + 1][y]);
+			if (y < d->len - 2)
 			{
 				if (data[x][y].rz <= data[x][y + 1].rz)
-					draw_line(s, color[x][y + 1], data[x][y], data[x][y + 1]);
+					draw_line(d, color[x][y + 1], data[x][y], data[x][y + 1]);
 				else
-					draw_line(s, color[x][y], data[x][y], data[x][y + 1]);
+					draw_line(d, color[x][y], data[x][y], data[x][y + 1]);
 			}
 			y++;
 		}

@@ -6,7 +6,7 @@
 /*   By: bsiguret <bsiguret@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/26 04:28:29 by bsiguret          #+#    #+#             */
-/*   Updated: 2017/12/26 04:52:15 by bsiguret         ###   ########.fr       */
+/*   Updated: 2017/12/26 10:06:56 by bsiguret         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,43 +29,43 @@ t_newpos			initialisation(t_newpos dot)
 	return (ret);
 }
 
-void				reset_func(t_param *setup)
+void				reset_func(t_param *d)
 {
 	t_image			tmp;
 
-	ft_memdel((void**)setup->nbr);
-	ft_memdel((void**)setup->dot);
-	ft_memdel((void**)setup->stock);
-	setup->nbr = ft_getdata(setup->endl, setup->len, setup->ret);
-	setup->dot = get_map(setup->endl, setup->len, setup->nbr);
-	setup->stock = get_pos_data(setup->endl, setup->len, setup->dot);
-	mlx_destroy_image(setup->mlx, setup->pict.img_ptr);
-	tmp.img_ptr = mlx_new_image(setup->mlx, WIDHT + 50, HEIGHT + 50);
+	ft_memdel((void**)d->nbr);
+	ft_memdel((void**)d->dot);
+	ft_memdel((void**)d->stock);
+	d->nbr = ft_getdata(d->endl, d->len, d->ret);
+	d->dot = get_map(d->endl, d->len, d->nbr);
+	d->stock = get_pos_data(d->endl, d->len, d->dot);
+	mlx_destroy_image(d->mlx, d->pict.img_ptr);
+	tmp.img_ptr = mlx_new_image(d->mlx, WIDHT + 50, HEIGHT + 50);
 	tmp.data = mlx_get_data_addr(tmp.img_ptr, &tmp.bpp,
 			&tmp.sizeline, &tmp.endian);
-	setup->pict = tmp;
-	print_map(setup, setup->color, setup->stock);
-	mlx_put_image_to_window(setup->mlx, setup->window, tmp.img_ptr, 0, 120);
+	d->pict = tmp;
+	print_map(d, d->color, d->stock);
+	mlx_put_image_to_window(d->mlx, d->window, tmp.img_ptr, 0, 120);
 }
 
 void				print_menu(void *mlx, void *win)
 {
-	mlx_string_put(mlx, win, 10, 20, 0xFF0000, "Zoom: [+][-]");
-	mlx_string_put(mlx, win, 10, 35, 0xFF0000, "Rotation: [X][Y]");
-	mlx_string_put(mlx, win, 10, 50, 0xFF0000, "Move: [UP][DOWN][RIGHT][LEFT]");
+	mlx_string_put(mlx, win, 10, 20, 0xFF0000, "Exit: [ESC]");
+	mlx_string_put(mlx, win, 10, 35, 0xFF0000, "Move: [UP][DOWN][RIGHT][LEFT]");
+	mlx_string_put(mlx, win, 10, 50, 0xFF0000, "Zoom: [-][+]");
 	mlx_string_put(mlx, win, 10, 65, 0xFF0000, "Height ratio: [1][2]");
-	mlx_string_put(mlx, win, 10, 82, 0xFF0000, "Reset view: [R]");
-	mlx_string_put(mlx, win, 10, 99, 0xFF0000, "Exit: [ESC]");
+	mlx_string_put(mlx, win, 10, 80, 0xFF0000, "Reset view: [R]");
+	mlx_string_put(mlx, win, 10, 95, 0xFF0000, "Rotation: [X][Y]");
 }
 
-void				put_pixel(t_param *s, unsigned long c, int x, int y)
+void				put_pixel(t_param *d, unsigned long c, int x, int y)
 {
 	unsigned int	rt;
 
-	rt = mlx_get_color_value(s->mlx, c);
-	s->pict.data[y * s->pict.sizeline + x * s->pict.bpp / 8] = (rt & 0xFF);
-	s->pict.data[y * s->pict.sizeline + x * s->pict.bpp / 8 + 1] = (
+	rt = mlx_get_color_value(d->mlx, c);
+	d->pict.data[y * d->pict.sizeline + x * d->pict.bpp / 8] = (rt & 0xFF);
+	d->pict.data[y * d->pict.sizeline + x * d->pict.bpp / 8 + 1] = (
 			rt & 0xFF00) >> 8;
-	s->pict.data[y * s->pict.sizeline + x * s->pict.bpp / 8 + 2] = (
+	d->pict.data[y * d->pict.sizeline + x * d->pict.bpp / 8 + 2] = (
 			rt & 0xFF0000) >> 16;
 }
