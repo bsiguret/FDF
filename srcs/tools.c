@@ -6,7 +6,7 @@
 /*   By: bsiguret <bsiguret@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/26 04:28:29 by bsiguret          #+#    #+#             */
-/*   Updated: 2017/12/26 10:06:56 by bsiguret         ###   ########.fr       */
+/*   Updated: 2018/01/13 05:51:03 by bsiguret         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,12 +50,12 @@ void				reset_func(t_param *d)
 
 void				print_menu(void *mlx, void *win)
 {
-	mlx_string_put(mlx, win, 10, 20, 0xFF0000, "Exit: [ESC]");
-	mlx_string_put(mlx, win, 10, 35, 0xFF0000, "Move: [UP][DOWN][RIGHT][LEFT]");
-	mlx_string_put(mlx, win, 10, 50, 0xFF0000, "Zoom: [-][+]");
-	mlx_string_put(mlx, win, 10, 65, 0xFF0000, "Height ratio: [1][2]");
-	mlx_string_put(mlx, win, 10, 80, 0xFF0000, "Reset view: [R]");
-	mlx_string_put(mlx, win, 10, 95, 0xFF0000, "Rotation: [X][Y]");
+	mlx_string_put(mlx, win, 10, 10, 0xFF0000, "Exit: [ESC]");
+	mlx_string_put(mlx, win, 10, 25, 0xFF0000, "Move: [UP][DOWN][RIGHT][LEFT]");
+	mlx_string_put(mlx, win, 10, 40, 0xFF0000, "Zoom: [-][+]");
+	mlx_string_put(mlx, win, 10, 55, 0xFF0000, "Height ratio: [1][2]");
+	mlx_string_put(mlx, win, 10, 70, 0xFF0000, "Reset view: [R]");
+	mlx_string_put(mlx, win, 10, 85, 0xFF0000, "Rotation: [X][Y]");
 }
 
 void				put_pixel(t_param *d, unsigned long c, int x, int y)

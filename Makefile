@@ -6,7 +6,7 @@
 #    By: bsiguret <bsiguret@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/12/26 04:36:14 by bsiguret          #+#    #+#              #
-#    Updated: 2018/01/04 21:32:57 by bsiguret         ###   ########.fr        #
+#    Updated: 2018/01/13 06:56:52 by bsiguret         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -25,10 +25,9 @@ SRCS			=	$(addprefix $(SRCS_PATH), $(SRCS_NAME))
 OBJ_NAME		=	$(SRCS_NAME:.c=.o)
 OBJ_PATH		=	obj/
 OBJ				=	$(addprefix $(OBJ_PATH), $(OBJ_NAME))
-FLAGS			=	-Wall -Werror -Wextra -Ofast
+FLAGS			=	-Wall -Werror -Wextra
 INC				=	-I./includes/ -I./libft/
-LIB				=	-L/Users/bastiensiguret/minilibx -lmlx -L/usr/X11/lib -lX11 -L/usr -lXext -framework OpenGL -framework AppKit \
-					-Llibft -lft
+LIB				=	-lmlx -framework OpenGL -framework AppKit -Llibft -lft
 
 $(NAME): $(OBJ)
 	make -C libft/

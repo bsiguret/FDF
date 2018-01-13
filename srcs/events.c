@@ -6,7 +6,7 @@
 /*   By: bsiguret <bsiguret@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/26 05:10:01 by bsiguret          #+#    #+#             */
-/*   Updated: 2018/01/04 21:32:32 by bsiguret         ###   ########.fr       */
+/*   Updated: 2018/01/13 06:51:24 by bsiguret         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,7 @@ t_newpos		**get_pos_event_data(int endl, int size,
 	return (ret);
 }
 
-int			**ft_getdata(int endl, int size, char **stock)
+int				**ft_getdata(int endl, int size, char **stock)
 {
 	int		**ret;
 	int		index;

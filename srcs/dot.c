@@ -5,14 +5,14 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: bsiguret <bsiguret@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/12/21 13:25:32 by bsiguret          #+#    #+#             */
-/*   Updated: 2018/01/04 21:32:40 by bsiguret         ###   ########.fr       */
+/*   Created: 2018/01/09 07:27:49 by bsiguret          #+#    #+#             */
+/*   Updated: 2018/01/13 06:51:04 by bsiguret         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
 
-static t_point	*get_line(int size, int index, int *alpha)
+static t_point		*get_line(int size, int index, int *alpha)
 {
 	t_point		*nbr;
 	int			i;
@@ -29,7 +29,7 @@ static t_point	*get_line(int size, int index, int *alpha)
 	return (nbr);
 }
 
-t_point			**get_map(int endl, int len, int **alpha)
+t_point				**get_map(int endl, int len, int **alpha)
 {
 	t_point		**ret;
 	int			index;

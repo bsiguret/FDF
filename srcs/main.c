@@ -6,7 +6,7 @@
 /*   By: bsiguret <bsiguret@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/21 21:42:59 by bsiguret          #+#    #+#             */
-/*   Updated: 2018/01/04 21:32:36 by bsiguret         ###   ########.fr       */
+/*   Updated: 2018/01/13 06:51:31 by bsiguret         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,10 +76,14 @@ static int		my_function(int key, t_param *d)
 int				main(int ac, char **av)
 {
 	t_param		set;
+	int			fd;
 
-	if (ac != 2 || ft_strcmp(av[1], "/dev/null") == 0)
+	fd = open(av[1], O_RDONLY);
+	if (ac != 2 || ft_strcmp(av[1], "/dev/random") == 0 ||
+		ft_strcmp(av[1], "/dev/null") == 0 || fd < 0)
 	{
-		ft_putendl("Error, bad numbers of arguments or not valid argument!");
+		ft_putendl("usage: ./fdf valid_map_file");
+		close(fd);
 		return (EXIT_FAILURE);
 	}
 	param_init(&set, av[1]);

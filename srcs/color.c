@@ -5,14 +5,14 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: bsiguret <bsiguret@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/12/26 04:39:37 by bsiguret          #+#    #+#             */
-/*   Updated: 2018/01/04 21:32:44 by bsiguret         ###   ########.fr       */
+/*   Created: 2018/01/09 07:27:49 by bsiguret          #+#    #+#             */
+/*   Updated: 2018/01/13 06:47:23 by bsiguret         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
 
-static int	find_pos(char *str, char ptr)
+static int				find_pos(char *str, char ptr)
 {
 	int		i;
 
@@ -22,12 +22,12 @@ static int	find_pos(char *str, char ptr)
 		if (!(str[i] == ptr))
 			i++;
 		if (str[i] == ptr)
-			break;
+			break ;
 	}
 	return (i);
 }
 
-char		*clean_str(char *str)
+char					*clean_str(char *str)
 {
 	char	*ret;
 	char	*ptr;
@@ -41,7 +41,7 @@ char		*clean_str(char *str)
 	return (ret);
 }
 
-char		*remove_prefix(char *str)
+char					*remove_prefix(char *str)
 {
 	char	*ret;
 	char	*ptr;
