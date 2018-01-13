@@ -6,7 +6,7 @@
 /*   By: bsiguret <bsiguret@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/06 13:15:09 by bsiguret          #+#    #+#             */
-/*   Updated: 2018/01/13 06:56:31 by bsiguret         ###   ########.fr       */
+/*   Updated: 2018/01/13 09:33:34 by bsiguret         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,8 +26,8 @@
 
 # define INIT_GRID 1
 
-# define SUB_WIDTH 2000
-# define SUB_HEIGHT 800
+# define SUB_WIDTH 1800
+# define SUB_HEIGHT 1000
 # define COLOR1 "4286f4"
 # define COLOR2 "007B0C"
 # define COLOR3 "FFD827"

@@ -6,7 +6,7 @@
 /*   By: bsiguret <bsiguret@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/21 21:42:59 by bsiguret          #+#    #+#             */
-/*   Updated: 2018/01/13 06:51:31 by bsiguret         ###   ########.fr       */
+/*   Updated: 2018/01/13 09:53:41 by bsiguret         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ static void		param_init(t_param *d, char *file)
 	d->ret = read_file(file);
 	if (check_file(d->ret) == 0)
 	{
-		ft_putendl_fd("Error, bad size of some line in file!", 2);
+		ft_putendl_fd("Error, invalid line size in map file!", 2);
 		exit(EXIT_FAILURE);
 	}
 	d->endl = nb_line(d->ret);
@@ -35,7 +35,7 @@ static void		param_init(t_param *d, char *file)
 	d->mlx = mlx_init();
 	d->nbr = ft_getdata(d->endl, d->len, d->ret);
 	d->dot = get_map(d->endl, d->len, d->nbr);
-	d->window = mlx_new_window(d->mlx, WIDHT, HEIGHT, "FDF");
+	d->window = mlx_new_window(d->mlx, WIDHT, HEIGHT, "bsiguret FDF");
 	d->pict = image_init(d->mlx);
 	d->stock = get_pos_data(d->endl, d->len, d->dot);
 	d->color = get_color_data(d->endl, d->len, d->dot,
@@ -54,7 +54,7 @@ static void		do_event(int key, t_param *d)
 			&tmp.sizeline, &tmp.endian);
 	d->pict = tmp;
 	print_map(d, d->color, newstock);
-	mlx_put_image_to_window(d->mlx, d->window, tmp.img_ptr, 0, 120);
+	mlx_put_image_to_window(d->mlx, d->window, tmp.img_ptr, 0, 130);
 	ft_memdel((void**)d->stock);
 	d->stock = newstock;
 }
@@ -89,8 +89,8 @@ int				main(int ac, char **av)
 	param_init(&set, av[1]);
 	print_menu(set.mlx, set.window);
 	print_map(&set, set.color, set.stock);
-	mlx_put_image_to_window(set.mlx, set.window, set.pict.img_ptr, 0, 120);
-	mlx_hook(set.window, 2, 3, my_function, &set);
+	mlx_put_image_to_window(set.mlx, set.window, set.pict.img_ptr, 0, 130);
+	mlx_hook(set.window, 2, 1, my_function, &set);
 	mlx_loop(set.mlx);
 	ft_memdel((void**)&set);
 	return (0);
