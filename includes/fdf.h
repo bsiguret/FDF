@@ -6,7 +6,7 @@
 /*   By: bsiguret <bsiguret@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/06 13:15:09 by bsiguret          #+#    #+#             */
-/*   Updated: 2018/01/13 09:33:34 by bsiguret         ###   ########.fr       */
+/*   Updated: 2018/01/22 16:34:27 by bsiguret         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -170,5 +170,7 @@ void				put_pixel(t_param *s, unsigned long color, int x, int y);
 void				reset_func(t_param *setup);
 t_newpos			initialisation(t_newpos dot);
 t_newpos			new_pos_after_zoom(int sz, t_newpos dot, int key);
+void				ft_freeret(char **ret);
+void				ft_freenewpos(t_newpos **stock);
 
 #endif

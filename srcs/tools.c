@@ -6,7 +6,7 @@
 /*   By: bsiguret <bsiguret@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/26 04:28:29 by bsiguret          #+#    #+#             */
-/*   Updated: 2018/01/13 09:53:35 by bsiguret         ###   ########.fr       */
+/*   Updated: 2018/01/22 16:02:09 by bsiguret         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,4 +68,14 @@ void				put_pixel(t_param *d, unsigned long c, int x, int y)
 			rt & 0xFF00) >> 8;
 	d->pict.data[y * d->pict.sizeline + x * d->pict.bpp / 8 + 2] = (
 			rt & 0xFF0000) >> 16;
+}
+
+void				ft_freeret(char **ret)
+{
+	int	i;
+
+	i = 0;
+	while(ret[i])
+		free(ret[i++]);
+	free(ret);
 }

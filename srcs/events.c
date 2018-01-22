@@ -6,7 +6,7 @@
 /*   By: bsiguret <bsiguret@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/26 05:10:01 by bsiguret          #+#    #+#             */
-/*   Updated: 2018/01/13 06:51:24 by bsiguret         ###   ########.fr       */
+/*   Updated: 2018/01/22 16:34:55 by bsiguret         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,4 +65,14 @@ int				**ft_getdata(int endl, int size, char **stock)
 		stock++;
 	}
 	return (ret);
+}
+
+void			ft_freenewpos(t_newpos **stock)
+{
+	int	i;
+
+	i = 0;
+	while (stock[i])
+		free(stock[i++]);
+	free(stock);
 }

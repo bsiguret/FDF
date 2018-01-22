@@ -6,7 +6,7 @@
 /*   By: bsiguret <bsiguret@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/09 07:27:49 by bsiguret          #+#    #+#             */
-/*   Updated: 2018/01/13 06:47:23 by bsiguret         ###   ########.fr       */
+/*   Updated: 2018/01/22 16:14:48 by bsiguret         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,6 +62,7 @@ static unsigned long	*ft_getnbr_color(int size, t_point *alpha, char *str)
 {
 	char				**ret;
 	unsigned long		*nbr;
+	char				*strcpy;
 	int					count;
 
 	count = 0;
@@ -69,7 +70,9 @@ static unsigned long	*ft_getnbr_color(int size, t_point *alpha, char *str)
 	nbr = (unsigned long*)malloc(sizeof(unsigned long) * (size + 1));
 	while (count < size)
 	{
-		nbr[count] = ft_atoi_base(remove_prefix(clean_str(ret[count])), 16);
+		strcpy = remove_prefix(clean_str(ret[count]));
+		nbr[count] = ft_atoi_base(strcpy, 16);
+		free(strcpy);
 		if (nbr[count] == 0)
 		{
 			if (alpha[count].z <= 0)
@@ -83,6 +86,7 @@ static unsigned long	*ft_getnbr_color(int size, t_point *alpha, char *str)
 		}
 		count++;
 	}
+	ft_freeret(ret);
 	return (nbr);
 }
 
