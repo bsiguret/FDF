@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_getnbr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bsiguret <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: bsiguret <bsiguret@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/13 16:50:25 by bsiguret          #+#    #+#             */
-/*   Updated: 2017/12/13 17:13:04 by bsiguret         ###   ########.fr       */
+/*   Updated: 2018/01/23 16:39:09 by bsiguret         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,5 +26,9 @@ int		*ft_getnbr(int size, char *str)
 		nbr[count] = ft_atoi(ret[count]);
 		count++;
 	}
+	count = 0;
+	while (ret[count])
+		free(ret[count++]);
+	free(ret);
 	return (nbr);
 }

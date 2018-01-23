@@ -6,7 +6,7 @@
 /*   By: bsiguret <bsiguret@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/06 13:15:09 by bsiguret          #+#    #+#             */
-/*   Updated: 2018/01/22 16:34:27 by bsiguret         ###   ########.fr       */
+/*   Updated: 2018/01/23 18:03:26 by bsiguret         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -149,7 +149,7 @@ int					**ft_getdata(int endl, int size, char **stock);
 void				print_map(t_param *s, unsigned long **color,
 						t_newpos **data);
 t_newpos			add_size(int keycode, int size, t_newpos dot);
-t_newpos			**get_pos_data(int endl, int size, t_point **data);
+void				get_pos_data(t_param *d);
 /*
 ** Rotation func
 */
@@ -172,5 +172,6 @@ t_newpos			initialisation(t_newpos dot);
 t_newpos			new_pos_after_zoom(int sz, t_newpos dot, int key);
 void				ft_freeret(char **ret);
 void				ft_freenewpos(t_newpos **stock);
+void				ft_stockmalloc(t_param *d);
 
 #endif

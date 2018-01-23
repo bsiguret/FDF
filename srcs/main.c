@@ -6,7 +6,7 @@
 /*   By: bsiguret <bsiguret@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/21 21:42:59 by bsiguret          #+#    #+#             */
-/*   Updated: 2018/01/22 16:34:39 by bsiguret         ###   ########.fr       */
+/*   Updated: 2018/01/23 18:27:30 by bsiguret         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,8 @@ static void		param_init(t_param *d, char *file)
 	d->dot = get_map(d->endl, d->len, d->nbr);
 	d->window = mlx_new_window(d->mlx, WIDHT, HEIGHT, "bsiguret FDF");
 	d->pict = image_init(d->mlx);
-	d->stock = get_pos_data(d->endl, d->len, d->dot);
+	ft_stockmalloc(d);
+	get_pos_data(d);
 	d->color = get_color_data(d->endl, d->len, d->dot,
 			d->ret);
 }
@@ -75,7 +76,7 @@ static int		my_function(int key, t_param *d)
 
 int				main(int ac, char **av)
 {
-	t_param		set;
+	t_param		*set;
 	int			fd;
 
 	fd = open(av[1], O_RDONLY);
@@ -86,12 +87,13 @@ int				main(int ac, char **av)
 		close(fd);
 		return (EXIT_FAILURE);
 	}
-	param_init(&set, av[1]);
-	print_menu(set.mlx, set.window);
-	print_map(&set, set.color, set.stock);
-	mlx_put_image_to_window(set.mlx, set.window, set.pict.img_ptr, 0, 130);
-	mlx_hook(set.window, 2, 1, my_function, &set);
-	mlx_loop(set.mlx);
-	ft_memdel((void**)&set);
+	set = (t_param*)malloc(sizeof(t_param));
+	param_init(set, av[1]);
+	print_menu(set->mlx, set->window);
+	print_map(set, set->color, set->stock);
+	mlx_put_image_to_window(set->mlx, set->window, set->pict.img_ptr, 0, 130);
+	ft_freenewpos(set->stock);
+	mlx_hook(set->window, 2, 1, my_function, set);
+	mlx_loop(set->mlx);
 	return (0);
 }

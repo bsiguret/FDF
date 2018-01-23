@@ -6,7 +6,7 @@
 /*   By: bsiguret <bsiguret@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/26 05:10:01 by bsiguret          #+#    #+#             */
-/*   Updated: 2018/01/22 16:34:55 by bsiguret         ###   ########.fr       */
+/*   Updated: 2018/01/23 18:06:19 by bsiguret         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,4 +75,17 @@ void			ft_freenewpos(t_newpos **stock)
 	while (stock[i])
 		free(stock[i++]);
 	free(stock);
+}
+
+void			ft_stockmalloc(t_param *d)
+{
+	int	index;
+
+	index = 0;
+	d->stock = (t_newpos**)malloc(sizeof(t_newpos*) * (d->endl + 1));
+	while (index < d->endl)
+	{
+		d->stock[index] = (t_newpos*)malloc(sizeof(t_newpos) * (d->len + 1));
+		index++;
+	}
 }

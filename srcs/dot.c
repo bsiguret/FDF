@@ -6,7 +6,7 @@
 /*   By: bsiguret <bsiguret@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/09 07:27:49 by bsiguret          #+#    #+#             */
-/*   Updated: 2018/01/13 07:16:54 by bsiguret         ###   ########.fr       */
+/*   Updated: 2018/01/23 18:10:24 by bsiguret         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,32 +62,26 @@ static t_newpos		dot_in_win(int size, t_point dot)
 	return (ret);
 }
 
-static t_newpos		*get_pos_endl(int size, t_point *data)
+static void			get_pos_endl(t_param *d, int i)
 {
-	t_newpos		*ret;
 	int				index;
 
 	index = 0;
-	ret = (t_newpos*)malloc(sizeof(t_newpos) * (size + 1));
-	while (index < size)
+	while (index < d->len)
 	{
-		ret[index] = dot_in_win(size, data[index]);
+		d->stock[i][index] = dot_in_win(d->len, d->dot[i][index]);
 		index++;
 	}
-	return (ret);
 }
 
-t_newpos			**get_pos_data(int endl, int size, t_point **data)
+void				get_pos_data(t_param *d)
 {
-	t_newpos		**ret;
 	int				index;
 
 	index = 0;
-	ret = (t_newpos**)malloc(sizeof(t_newpos*) * (endl + 1));
-	while (index < endl)
+	while (index < d->endl)
 	{
-		ret[index] = get_pos_endl(size, data[index]);
+		get_pos_endl(d, index);
 		index++;
 	}
-	return (ret);
 }
