@@ -6,42 +6,36 @@
 /*   By: bsiguret <bsiguret@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/09 07:27:49 by bsiguret          #+#    #+#             */
-/*   Updated: 2018/01/23 18:10:24 by bsiguret         ###   ########.fr       */
+/*   Updated: 2018/01/24 15:06:40 by bsiguret         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
 
-static t_point		*get_line(int size, int index, int *alpha)
+static void			get_line(t_param *d, int size, int index, int *alpha)
 {
-	t_point		*nbr;
 	int			i;
 
 	i = 0;
-	nbr = (t_point*)malloc(sizeof(t_point) * (size + 1));
 	while (i < size - 1)
 	{
-		nbr[i].x = i;
-		nbr[i].y = index;
-		nbr[i].z = alpha[i];
+		d->dot[index][i].x = i;
+		d->dot[index][i].y = index;
+		d->dot[index][i].z = alpha[i];
 		i++;
 	}
-	return (nbr);
 }
 
-t_point				**get_map(int endl, int len, int **alpha)
+void				get_map(t_param *d, int endl, int len, int **alpha)
 {
-	t_point		**ret;
 	int			index;
 
 	index = 0;
-	ret = (t_point**)malloc(sizeof(t_point*) * (endl + 1));
 	while (index < endl)
 	{
-		ret[index] = get_line(len, index, alpha[index]);
-		index++;
+		get_line(d, len, index, alpha[index]);
+ 		index++;
 	}
-	return (ret);
 }
 
 static t_newpos		dot_in_win(int size, t_point dot)

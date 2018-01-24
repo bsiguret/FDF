@@ -6,7 +6,7 @@
 /*   By: bsiguret <bsiguret@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/26 04:28:29 by bsiguret          #+#    #+#             */
-/*   Updated: 2018/01/23 17:29:43 by bsiguret         ###   ########.fr       */
+/*   Updated: 2018/01/24 14:12:55 by bsiguret         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,8 +33,8 @@ void				reset_func(t_param *d)
 {
 	t_image			tmp;
 
-	d->nbr = ft_getdata(d->endl, d->len, d->ret);
-	d->dot = get_map(d->endl, d->len, d->nbr);
+	ft_getdata(d, d->ret);
+	get_map(d, d->endl, d->len, d->nbr);
 	get_pos_data(d);
 	mlx_destroy_image(d->mlx, d->pict.img_ptr);
 	tmp.img_ptr = mlx_new_image(d->mlx, WIDHT + 50, HEIGHT + 50);

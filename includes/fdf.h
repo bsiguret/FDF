@@ -6,7 +6,7 @@
 /*   By: bsiguret <bsiguret@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/06 13:15:09 by bsiguret          #+#    #+#             */
-/*   Updated: 2018/01/23 18:03:26 by bsiguret         ###   ########.fr       */
+/*   Updated: 2018/01/24 16:29:47 by bsiguret         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -128,7 +128,7 @@ typedef struct		s_param
 /*
 ** Calc dot func
 */
-t_point				**get_map(int endl, int len, int **alpha);
+void				get_map(t_param *d, int endl, int len, int **alpha);
 
 /*
 ** Parser func
@@ -139,9 +139,10 @@ int					size_line(char *str);
 int					nb_line(char **stock);
 char				*remove_prefix(char *str);
 char				*clean_str(char *str);
-t_newpos			**get_pos_event_data(int endl, int size,
-	t_newpos **data, int key);
-int					**ft_getdata(int endl, int size, char **stock);
+void				get_pos_event_data(t_param *d, int key);
+void				ft_getdata(t_param *d, char **stock);
+void				is_mapvalid(char *l);
+int					is_hexvalid(char *l);
 
 /*
 ** Draw func
@@ -162,6 +163,14 @@ unsigned long		**get_color_data(int endl, int size, t_point **alpha,
 						char **stock);
 
 /*
+** Error func
+*/
+
+void	map_error(void);
+void	arg_error(void);
+void	malloc_error(void);
+
+/*
 ** Other func
 */
 t_newpos			new_pos_after_basic_move(t_newpos dot, int keycode);
@@ -172,6 +181,6 @@ t_newpos			initialisation(t_newpos dot);
 t_newpos			new_pos_after_zoom(int sz, t_newpos dot, int key);
 void				ft_freeret(char **ret);
 void				ft_freenewpos(t_newpos **stock);
-void				ft_stockmalloc(t_param *d);
+void				ft_parammalloc(t_param *d);
 
 #endif

@@ -1,31 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_getnbr.c                                        :+:      :+:    :+:   */
+/*   error.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: bsiguret <bsiguret@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/12/13 16:50:25 by bsiguret          #+#    #+#             */
-/*   Updated: 2018/01/24 14:19:24 by bsiguret         ###   ########.fr       */
+/*   Created: 2018/01/24 16:12:19 by bsiguret          #+#    #+#             */
+/*   Updated: 2018/01/24 16:12:28 by bsiguret         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "fdf.h"
 
-void	ft_getnbr(int *nbr, int size, char *str)
+void	map_error(void)
 {
-	char			**ret;
-	int				count;
+	write(2, "Map error, check your file\n", 27);
+	exit(1);
+}
 
-	count = 0;
-	ret = ft_strsplit(str, ' ');
-	while (count < size)
-	{
-		nbr[count] = ft_atoi(ret[count]);
-		count++;
-	}
-	count = 0;
-	while (ret[count])
-		free(ret[count++]);
-	free(ret);
+void	arg_error(void)
+{
+	write(2, "usage: ./fdf input_map\n", 23);
+	exit(1);
+}
+
+void	malloc_error(void)
+{
+	write(2, "Malloc Error, invalid file(?)\n", 30);
+	exit(1);
 }

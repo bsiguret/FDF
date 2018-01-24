@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   libft.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bsiguret <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: bsiguret <bsiguret@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/07 05:17:04 by bsiguret          #+#    #+#             */
-/*   Updated: 2017/12/15 14:35:12 by bsiguret         ###   ########.fr       */
+/*   Updated: 2018/01/24 14:19:33 by bsiguret         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,6 +99,6 @@ void				ft_lstiter(t_list *lst, void (*f)(t_list *elem));
 t_list				*ft_lstmap(t_list *lst, t_list *(*f)(t_list *elem));
 int					ft_isspace(int c);
 int					get_next_line(const int fd, char **line);
-int					*ft_getnbr(int size, char *str);
+void				ft_getnbr(int *nbr, int size, char *str);
 int					ft_atoi_base(const char *str, int str_base);
 #endif

@@ -6,7 +6,7 @@
 /*   By: bsiguret <bsiguret@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/21 21:42:59 by bsiguret          #+#    #+#             */
-/*   Updated: 2018/01/23 18:27:30 by bsiguret         ###   ########.fr       */
+/*   Updated: 2018/01/24 18:04:10 by bsiguret         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,11 +33,11 @@ static void		param_init(t_param *d, char *file)
 	d->endl = nb_line(d->ret);
 	d->len = size_line((d->ret)[0]);
 	d->mlx = mlx_init();
-	d->nbr = ft_getdata(d->endl, d->len, d->ret);
-	d->dot = get_map(d->endl, d->len, d->nbr);
+	ft_parammalloc(d);
+	ft_getdata(d, d->ret);
+	get_map(d, d->endl, d->len, d->nbr);
 	d->window = mlx_new_window(d->mlx, WIDHT, HEIGHT, "bsiguret FDF");
 	d->pict = image_init(d->mlx);
-	ft_stockmalloc(d);
 	get_pos_data(d);
 	d->color = get_color_data(d->endl, d->len, d->dot,
 			d->ret);
@@ -46,18 +46,16 @@ static void		param_init(t_param *d, char *file)
 static void		do_event(int key, t_param *d)
 {
 	t_image		tmp;
-	t_newpos	**newstock;
 
 	mlx_destroy_image(d->mlx, d->pict.img_ptr);
-	newstock = get_pos_event_data(d->endl, d->len, d->stock, key);
+	get_pos_event_data(d, key);
 	tmp.img_ptr = mlx_new_image(d->mlx, WIDHT + 50, HEIGHT + 50);
 	tmp.data = mlx_get_data_addr(tmp.img_ptr, &tmp.bpp,
 			&tmp.sizeline, &tmp.endian);
 	d->pict = tmp;
-	print_map(d, d->color, newstock);
+	print_map(d, d->color, d->stock);
 	mlx_put_image_to_window(d->mlx, d->window, tmp.img_ptr, 0, 130);
-	ft_memdel((void**)d->stock);
-	d->stock = newstock;
+	// ft_freenewpos(d->stock);
 }
 
 static int		my_function(int key, t_param *d)
@@ -80,19 +78,14 @@ int				main(int ac, char **av)
 	int			fd;
 
 	fd = open(av[1], O_RDONLY);
-	if (ac != 2 || ft_strcmp(av[1], "/dev/random") == 0 ||
-		ft_strcmp(av[1], "/dev/null") == 0 || fd < 0)
-	{
-		ft_putendl("usage: ./fdf valid_map_file");
-		close(fd);
-		return (EXIT_FAILURE);
-	}
-	set = (t_param*)malloc(sizeof(t_param));
+	if (ac != 2 || fd < 0)
+		map_error();
+	if(!(set = (t_param*)malloc(sizeof(t_param))))
+		malloc_error();
 	param_init(set, av[1]);
 	print_menu(set->mlx, set->window);
 	print_map(set, set->color, set->stock);
 	mlx_put_image_to_window(set->mlx, set->window, set->pict.img_ptr, 0, 130);
-	ft_freenewpos(set->stock);
 	mlx_hook(set->window, 2, 1, my_function, set);
 	mlx_loop(set->mlx);
 	return (0);

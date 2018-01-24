@@ -6,65 +6,55 @@
 /*   By: bsiguret <bsiguret@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/26 05:10:01 by bsiguret          #+#    #+#             */
-/*   Updated: 2018/01/23 18:06:19 by bsiguret         ###   ########.fr       */
+/*   Updated: 2018/01/24 14:36:08 by bsiguret         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
 
-static t_newpos	*get_pos_event_endl(int size, t_newpos *data, int key)
+static void		get_pos_event_endl(t_param *d, int i, int key)
 {
-	t_newpos	*ret;
 	int			index;
 
 	index = 0;
-	ret = (t_newpos*)malloc(sizeof(t_newpos) * (size + 1));
-	while (index < size)
+	while (index < d->len)
 	{
 		if (key == KEY_RIGHT || key == KEY_LEFT ||
 				key == KEY_UP || key == KEY_DOWN)
-			ret[index] = new_pos_after_basic_move(data[index], key);
+			d->stock[i][index] = new_pos_after_basic_move(d->stock[i][index], key);
 		if (key == ADD_HEIGHT || key == RM_HEIGHT)
-			ret[index] = add_size(key, size, data[index]);
+			d->stock[i][index] = add_size(key, d->len, d->stock[i][index]);
 		if (key == KEY_ZOOM_IN || key == KEY_ZOOM_OUT)
-			ret[index] = new_pos_after_zoom(size, data[index], key);
+			d->stock[i][index] = new_pos_after_zoom(d->len, d->stock[i][index], key);
 		if (key == KEY_ROT || key == KEY_ROT_Y)
-			ret[index] = new_pos_after_rotation(size, data[index], key);
+			d->stock[i][index] = new_pos_after_rotation(d->len, d->stock[i][index], key);
 		index++;
 	}
-	return (ret);
 }
 
-t_newpos		**get_pos_event_data(int endl, int size,
-		t_newpos **data, int key)
+void			get_pos_event_data(t_param *d, int key)
 {
-	t_newpos	**ret;
 	int			index;
 
 	index = 0;
-	ret = (t_newpos**)malloc(sizeof(t_newpos*) * (endl + 1));
-	while (index < endl)
+	while (index < d->endl)
 	{
-		ret[index] = get_pos_event_endl(size, data[index], key);
+		get_pos_event_endl(d, index, key);
 		index++;
 	}
-	return (ret);
 }
 
-int				**ft_getdata(int endl, int size, char **stock)
+void			ft_getdata(t_param *d, char **stock)
 {
-	int		**ret;
 	int		index;
 
 	index = 0;
-	ret = (int**)malloc(sizeof(int*) * (endl + 1));
-	while (index < endl)
+	while (index < d->endl)
 	{
-		ret[index] = ft_getnbr(size, *stock);
+		ft_getnbr(d->nbr[index], d->len, *stock);
 		index++;
 		stock++;
 	}
-	return (ret);
 }
 
 void			ft_freenewpos(t_newpos **stock)
@@ -77,15 +67,19 @@ void			ft_freenewpos(t_newpos **stock)
 	free(stock);
 }
 
-void			ft_stockmalloc(t_param *d)
+void			ft_parammalloc(t_param *d)
 {
 	int	index;
 
 	index = 0;
 	d->stock = (t_newpos**)malloc(sizeof(t_newpos*) * (d->endl + 1));
+	d->dot = (t_point**)malloc(sizeof(t_point*) * (d->endl + 1));
+	d->nbr = (int**)malloc(sizeof(int*) * (d->endl + 1));
 	while (index < d->endl)
 	{
 		d->stock[index] = (t_newpos*)malloc(sizeof(t_newpos) * (d->len + 1));
+		d->dot[index] = (t_point*)malloc(sizeof(t_point) * (d->len + 1));
+		d->nbr[index] = (int*)malloc(sizeof(int) * d->len + 1);
 		index++;
 	}
 }

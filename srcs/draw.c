@@ -6,7 +6,7 @@
 /*   By: bsiguret <bsiguret@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/26 04:30:38 by bsiguret          #+#    #+#             */
-/*   Updated: 2018/01/13 09:31:36 by bsiguret         ###   ########.fr       */
+/*   Updated: 2018/01/24 18:51:09 by bsiguret         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,6 +59,25 @@ static void		draw_line(t_param *d, unsigned long c, t_newpos d1, t_newpos d2)
 	}
 }
 
+static void		last_line(t_param *d, int x, unsigned long **color, t_newpos **data)
+{
+	int y;
+
+	y = 0;
+	while (y < d->len - 1)
+	{
+		draw_line(d, color[x][y], data[x][y], data[x][y]);
+		if (y < d->len - 2)
+		{
+			if (data[x][y].rz <= data[x][y + 1].rz)
+				draw_line(d, color[x][y + 1], data[x][y], data[x][y + 1]);
+			else
+				draw_line(d, color[x][y], data[x][y], data[x][y + 1]);
+		}
+		y++;
+	}
+}
+
 void			print_map(t_param *d, unsigned long **color, t_newpos **data)
 {
 	int			x;
@@ -86,4 +105,5 @@ void			print_map(t_param *d, unsigned long **color, t_newpos **data)
 		}
 		x++;
 	}
+	last_line(d, x, color, data);
 }
