@@ -6,7 +6,7 @@
 /*   By: bsiguret <bsiguret@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/26 05:10:01 by bsiguret          #+#    #+#             */
-/*   Updated: 2018/01/26 13:39:20 by bsiguret         ###   ########.fr       */
+/*   Updated: 2018/01/26 14:56:19 by bsiguret         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,16 +58,6 @@ void			ft_getdata(t_param *d, char **stock)
 		index++;
 		stock++;
 	}
-}
-
-void			ft_freenewpos(t_newpos **stock)
-{
-	int	i;
-
-	i = 0;
-	while (stock[i])
-		free(stock[i++]);
-	free(stock);
 }
 
 void			ft_parammalloc(t_param *d)

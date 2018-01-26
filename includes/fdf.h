@@ -6,7 +6,7 @@
 /*   By: bsiguret <bsiguret@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/06 13:15:09 by bsiguret          #+#    #+#             */
-/*   Updated: 2018/01/26 13:48:25 by bsiguret         ###   ########.fr       */
+/*   Updated: 2018/01/26 15:56:45 by bsiguret         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -142,7 +142,6 @@ char				*clean_str(char *str);
 void				get_pos_event_data(t_param *d, int key);
 void				ft_getdata(t_param *d, char **stock);
 void				is_mapvalid(char *l);
-int					is_hexvalid(char *l);
 
 /*
 ** Draw func
@@ -180,10 +179,8 @@ void				reset_func(t_param *setup);
 t_newpos			initialisation(t_newpos dot);
 t_newpos			new_pos_after_zoom(int sz, t_newpos dot, int key);
 void				ft_freeret(char **ret);
-void				ft_freenewpos(t_newpos **stock);
 void				ft_parammalloc(t_param *d);
 void				ft_isnbr_color(unsigned long *nbr, t_point *alpha,
 	int count);
-int					ft_isread_file(int fd, int count);
-
+int					ft_isread_file(char *file);
 #endif

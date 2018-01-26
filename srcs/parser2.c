@@ -6,7 +6,7 @@
 /*   By: bsiguret <bsiguret@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/24 16:28:51 by bsiguret          #+#    #+#             */
-/*   Updated: 2018/01/26 13:46:50 by bsiguret         ###   ########.fr       */
+/*   Updated: 2018/01/26 15:56:49 by bsiguret         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,12 +24,8 @@ void	is_mapvalid(char *l)
 			map_error();
 		while (*l && ft_isdigit(*l))
 			l++;
-		if (*l && *l == ',')
-		{
-			l += is_hexvalid(l);
-			if (*l && *l != ' ')
-				map_error();
-		}
+		while (*l && *l != ' ')
+			l++;
 		if (*l == '\0')
 			break ;
 		while (*l && *l == ' ')
@@ -37,31 +33,6 @@ void	is_mapvalid(char *l)
 	}
 	if (*l)
 		map_error();
-}
-
-int		is_hexvalid(char *l)
-{
-	int i;
-
-	i = 0;
-	l++;
-	if (*l && *l != '0')
-		map_error();
-	l++;
-	if (*l && *l != 'x')
-		map_error();
-	l++;
-	while (*l != ' ')
-	{
-		if ((*l < '0' || *l > '9') && (*l < 'A' || *l > 'F') &&
-				(*l < 'a' || *l > 'f'))
-			map_error();
-		l++;
-		i++;
-	}
-	if (i == 0)
-		map_error();
-	return (i + 3);
 }
 
 /*
@@ -80,11 +51,15 @@ void	ft_isnbr_color(unsigned long *nbr, t_point *alpha, int count)
 		nbr[count] = ft_atoi_base(COLOR4, 16);
 }
 
-int		ft_isread_file(int fd, int count)
+int		ft_isread_file(char *file)
 {
 	char	*line;
+	int		count;
+	int		fd;
 
-	while (get_next_line((int const)fd, &line))
+	fd = open(file, O_RDONLY);
+	count = 0;
+	while (get_next_line(fd, &line) == 1)
 	{
 		is_mapvalid(line);
 		free(line);
