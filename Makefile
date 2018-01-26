@@ -6,7 +6,7 @@
 #    By: bsiguret <bsiguret@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/12/26 04:36:14 by bsiguret          #+#    #+#              #
-#    Updated: 2018/01/24 16:30:33 by bsiguret         ###   ########.fr        #
+#    Updated: 2018/01/26 13:53:02 by bsiguret         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -27,7 +27,7 @@ SRCS			=	$(addprefix $(SRCS_PATH), $(SRCS_NAME))
 OBJ_NAME		=	$(SRCS_NAME:.c=.o)
 OBJ_PATH		=	obj/
 OBJ				=	$(addprefix $(OBJ_PATH), $(OBJ_NAME))
-FLAGS			=	-Wall -Werror -Wextra -g
+FLAGS			=	-Wall -Werror -Wextra
 INC				=	-I./includes/ -I./libft/
 LIB				=	-lmlx -framework OpenGL -framework AppKit -Llibft -lft
 
@@ -44,6 +44,7 @@ $(OBJ_PATH)%.o: $(SRCS_PATH)%.c
 clean:
 	make -C libft/ fclean
 	/bin/rm -rf $(OBJ)
+	/bin/rm -rf $(OBJ_PATH)
 
 fclean: clean
 	/bin/rm -rf $(NAME)

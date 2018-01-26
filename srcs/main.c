@@ -6,7 +6,7 @@
 /*   By: bsiguret <bsiguret@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/21 21:42:59 by bsiguret          #+#    #+#             */
-/*   Updated: 2018/01/24 18:04:10 by bsiguret         ###   ########.fr       */
+/*   Updated: 2018/01/26 13:39:36 by bsiguret         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,6 @@ static void		do_event(int key, t_param *d)
 	d->pict = tmp;
 	print_map(d, d->color, d->stock);
 	mlx_put_image_to_window(d->mlx, d->window, tmp.img_ptr, 0, 130);
-	// ft_freenewpos(d->stock);
 }
 
 static int		my_function(int key, t_param *d)
@@ -80,7 +79,7 @@ int				main(int ac, char **av)
 	fd = open(av[1], O_RDONLY);
 	if (ac != 2 || fd < 0)
 		map_error();
-	if(!(set = (t_param*)malloc(sizeof(t_param))))
+	if (!(set = (t_param*)malloc(sizeof(t_param))))
 		malloc_error();
 	param_init(set, av[1]);
 	print_menu(set->mlx, set->window);

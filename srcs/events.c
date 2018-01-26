@@ -6,7 +6,7 @@
 /*   By: bsiguret <bsiguret@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/26 05:10:01 by bsiguret          #+#    #+#             */
-/*   Updated: 2018/01/24 14:36:08 by bsiguret         ###   ########.fr       */
+/*   Updated: 2018/01/26 13:39:20 by bsiguret         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,13 +21,16 @@ static void		get_pos_event_endl(t_param *d, int i, int key)
 	{
 		if (key == KEY_RIGHT || key == KEY_LEFT ||
 				key == KEY_UP || key == KEY_DOWN)
-			d->stock[i][index] = new_pos_after_basic_move(d->stock[i][index], key);
+			d->stock[i][index] = new_pos_after_basic_move(d->stock[i][index],
+				key);
 		if (key == ADD_HEIGHT || key == RM_HEIGHT)
 			d->stock[i][index] = add_size(key, d->len, d->stock[i][index]);
 		if (key == KEY_ZOOM_IN || key == KEY_ZOOM_OUT)
-			d->stock[i][index] = new_pos_after_zoom(d->len, d->stock[i][index], key);
+			d->stock[i][index] = new_pos_after_zoom(d->len,
+				d->stock[i][index], key);
 		if (key == KEY_ROT || key == KEY_ROT_Y)
-			d->stock[i][index] = new_pos_after_rotation(d->len, d->stock[i][index], key);
+			d->stock[i][index] = new_pos_after_rotation(d->len,
+				d->stock[i][index], key);
 		index++;
 	}
 }

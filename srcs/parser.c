@@ -6,7 +6,7 @@
 /*   By: bsiguret <bsiguret@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/26 04:40:23 by bsiguret          #+#    #+#             */
-/*   Updated: 2018/01/24 18:50:54 by bsiguret         ###   ########.fr       */
+/*   Updated: 2018/01/26 13:45:30 by bsiguret         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,19 +23,13 @@ char		**read_file(char *file)
 	i = 0;
 	count = 0;
 	fd = open(file, O_RDONLY);
-	while (get_next_line((int const)fd, &line))
-	{
-		is_mapvalid(line);
-		free(line);
-		count++;
-	}
-	count += 1;
-	ret = (char**)malloc(sizeof(char*) * (count + 2));
+	count = ft_isread_file(fd, count);
+	ret = (char**)malloc(sizeof(char*) * (count + 1));
 	fd = open(file, O_RDONLY);
 	while (get_next_line((int const)fd, &line) && i < count)
 	{
-		line = ft_strjoin(line, "  0");
 		ret[i] = ft_strdup(line);
+		ft_strcat(ret[i], "  0");
 		free(line);
 		i++;
 	}

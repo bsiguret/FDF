@@ -6,7 +6,7 @@
 /*   By: bsiguret <bsiguret@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/09 07:27:49 by bsiguret          #+#    #+#             */
-/*   Updated: 2018/01/24 15:06:40 by bsiguret         ###   ########.fr       */
+/*   Updated: 2018/01/26 12:42:16 by bsiguret         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ void				get_map(t_param *d, int endl, int len, int **alpha)
 	while (index < endl)
 	{
 		get_line(d, len, index, alpha[index]);
- 		index++;
+		index++;
 	}
 }
 

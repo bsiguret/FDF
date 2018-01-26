@@ -6,7 +6,7 @@
 /*   By: bsiguret <bsiguret@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/09 07:27:49 by bsiguret          #+#    #+#             */
-/*   Updated: 2018/01/22 16:14:48 by bsiguret         ###   ########.fr       */
+/*   Updated: 2018/01/26 13:20:45 by bsiguret         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,8 +36,10 @@ char					*clean_str(char *str)
 	if (!(ptr = ft_strchr((const char*)str, ',')))
 		ret = "0x000000";
 	else
+	{
 		ret = ft_strsub((const char*)str, (find_pos(str, ',') + 1),
 				ft_strlen(str));
+	}
 	return (ret);
 }
 
@@ -63,6 +65,7 @@ static unsigned long	*ft_getnbr_color(int size, t_point *alpha, char *str)
 	char				**ret;
 	unsigned long		*nbr;
 	char				*strcpy;
+	char				*tmp;
 	int					count;
 
 	count = 0;
@@ -70,19 +73,15 @@ static unsigned long	*ft_getnbr_color(int size, t_point *alpha, char *str)
 	nbr = (unsigned long*)malloc(sizeof(unsigned long) * (size + 1));
 	while (count < size)
 	{
-		strcpy = remove_prefix(clean_str(ret[count]));
+		tmp = clean_str(ret[count]);
+		strcpy = remove_prefix(tmp);
+		if (ft_strcmp(tmp, "0x000000") < 0 || ft_strcmp(tmp, "0x000000") > 0)
+			free(tmp);
 		nbr[count] = ft_atoi_base(strcpy, 16);
 		free(strcpy);
 		if (nbr[count] == 0)
 		{
-			if (alpha[count].z <= 0)
-				nbr[count] = ft_atoi_base(COLOR1, 16);
-			else if (alpha[count].z >= 1 && alpha[count].z <= 8)
-				nbr[count] = ft_atoi_base(COLOR2, 16);
-			else if (alpha[count].z >= 9 && alpha[count].z <= 14)
-				nbr[count] = ft_atoi_base(COLOR3, 16);
-			else
-				nbr[count] = ft_atoi_base(COLOR4, 16);
+			ft_isnbr_color(nbr, alpha, count);
 		}
 		count++;
 	}

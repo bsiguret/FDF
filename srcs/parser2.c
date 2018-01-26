@@ -6,7 +6,7 @@
 /*   By: bsiguret <bsiguret@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/24 16:28:51 by bsiguret          #+#    #+#             */
-/*   Updated: 2018/01/24 16:29:35 by bsiguret         ###   ########.fr       */
+/*   Updated: 2018/01/26 13:46:50 by bsiguret         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,4 +62,33 @@ int		is_hexvalid(char *l)
 	if (i == 0)
 		map_error();
 	return (i + 3);
+}
+
+/*
+**THRASH FUNCTION (NORME)
+*/
+
+void	ft_isnbr_color(unsigned long *nbr, t_point *alpha, int count)
+{
+	if (alpha[count].z <= 0)
+		nbr[count] = ft_atoi_base(COLOR1, 16);
+	else if (alpha[count].z >= 1 && alpha[count].z <= 8)
+		nbr[count] = ft_atoi_base(COLOR2, 16);
+	else if (alpha[count].z >= 9 && alpha[count].z <= 14)
+		nbr[count] = ft_atoi_base(COLOR3, 16);
+	else
+		nbr[count] = ft_atoi_base(COLOR4, 16);
+}
+
+int		ft_isread_file(int fd, int count)
+{
+	char	*line;
+
+	while (get_next_line((int const)fd, &line))
+	{
+		is_mapvalid(line);
+		free(line);
+		count++;
+	}
+	return (count + 1);
 }

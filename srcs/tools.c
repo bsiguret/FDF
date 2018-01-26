@@ -6,7 +6,7 @@
 /*   By: bsiguret <bsiguret@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/26 04:28:29 by bsiguret          #+#    #+#             */
-/*   Updated: 2018/01/24 14:12:55 by bsiguret         ###   ########.fr       */
+/*   Updated: 2018/01/26 13:47:12 by bsiguret         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,7 +72,7 @@ void				ft_freeret(char **ret)
 	int	i;
 
 	i = 0;
-	while(ret[i])
+	while (ret[i])
 		free(ret[i++]);
 	free(ret);
 }

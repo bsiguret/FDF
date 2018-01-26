@@ -6,7 +6,7 @@
 /*   By: bsiguret <bsiguret@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/06 13:15:09 by bsiguret          #+#    #+#             */
-/*   Updated: 2018/01/24 16:29:47 by bsiguret         ###   ########.fr       */
+/*   Updated: 2018/01/26 13:48:25 by bsiguret         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -166,9 +166,9 @@ unsigned long		**get_color_data(int endl, int size, t_point **alpha,
 ** Error func
 */
 
-void	map_error(void);
-void	arg_error(void);
-void	malloc_error(void);
+void				map_error(void);
+void				arg_error(void);
+void				malloc_error(void);
 
 /*
 ** Other func
@@ -182,5 +182,8 @@ t_newpos			new_pos_after_zoom(int sz, t_newpos dot, int key);
 void				ft_freeret(char **ret);
 void				ft_freenewpos(t_newpos **stock);
 void				ft_parammalloc(t_param *d);
+void				ft_isnbr_color(unsigned long *nbr, t_point *alpha,
+	int count);
+int					ft_isread_file(int fd, int count);
 
 #endif
